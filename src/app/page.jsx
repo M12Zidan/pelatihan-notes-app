@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <div className="flex flex-col gap-10 justify-center items-center border-2">
-      <div className="flex flex-col items-center gap-4 mt-20">
+      <div className="flex flex-col items-center gap-8 mt-20">
         <h1 className="text-center text-6xl font-bold text-blue-600">
           Welcome to NotesApp
         </h1>
@@ -13,17 +13,19 @@ export default function Home() {
         </p>
         <Button
           variant="outline"
-          className="border-blue-800 text-blue-800 hover:text-blue-800 hover:bg-blue-50"
+          size="lg"
+          className="text-lg border-blue-200 text-blue-800 hover:text-blue-800 hover:bg-blue-50"
         >
           Buat Catatan Baru
         </Button>
       </div>
-      <div>
-        <h1 className="font-bold text-xl mb-4">Fitur</h1>
-        <div className="flex gap-4">
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           <Card
             title="Create Notes"
-            content="Blablabla"
+            content="Create and organize your notes with ease. Add title and content to
+              each note."
           />
           <Card
             title={"View Notes"}

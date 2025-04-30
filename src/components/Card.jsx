@@ -2,10 +2,10 @@ import React from "react";
 
 const Card = ({title, content}) => {
   return (
-    <div className="space-y-2 p-4 border-2 border-black max-w-sm rounded-2xl shadow-md">
-      <h3 className="font-semibold text-lg text-blue-700">{title}</h3>
-      <p className="text-slate-700 ">
-        {`Content: ${content}`}
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h3 className="text-xl font-semibold text-blue-500 mb-2">{title}</h3>
+      <p className="text-gray-600">
+        {`${content}`}
       </p>
     </div>
   );
