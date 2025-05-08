@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata = {
   title: "NotesAPP - Zidan",
@@ -10,12 +11,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`flex flex-col min-h-screen justify-between bg-slate-200 antialiased`}>
+      <body className={`antialiased flex flex-col min-h-screen`}>
+        {/* Pass isLoggedIn to Navbar */}
         <Navbar />
-        <section className="max-w-screen-lg mx-auto p-4">
-          {children}
-        </section>
-        <Footer/>
+        <section className="p-4 bg-slate-200 flex-grow">{children}</section>
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );

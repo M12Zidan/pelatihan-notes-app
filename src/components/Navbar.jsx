@@ -15,7 +15,7 @@ const Navbar = () => {
                 <Link href={"/notes"}>List Catatan</Link>
               </li>
               <li className="text-white font-medium text-md">
-                <Link href={"/create"}>Buat Catatan</Link>
+                <Link href={"/notes/create"}>Buat Catatan</Link>
               </li>
             </ul>
           </nav>
