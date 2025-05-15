@@ -11,7 +11,7 @@ import { DialogDelete } from "@/components/my-component/DialogDelete";
 import Link from "next/link";
 import { SquarePen } from "lucide-react";
 
-const CardNotes = ({ note }) => {
+const CardNotes = ({ note, isOwner }) => {
   return (
     <div className="bg-white min-h-[160px] flex flex-col gap-4 justify-between rounded-lg shadow-md p-4 max-w-sm w-full">
       <div>
@@ -24,32 +24,36 @@ const CardNotes = ({ note }) => {
         <p>Updated at: {new Date(note.updated_at).toLocaleString()}</p>
       </div>
 
-      <div className="flex gap-1 self-end">
-        <TooltipProvider>
-          <Tooltip>
-            <Link href={`/notes/${note.id_notes}/edit`}>
-              <TooltipTrigger className="w-[40px] h-[40px] bg-blue-500 hover:bg-blue-600 rounded-full flex items-center justify-center">
-                {/* <DialogEdit note={note}/> */}
-                <SquarePen className="text-white" size={20} />
-              </TooltipTrigger>
-            </Link>
-            <TooltipContent>
-              <p>View & Edit Notes</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+      {isOwner ? (
+        <div className="flex gap-1 self-end">
+          <TooltipProvider>
+            <Tooltip>
+              <Link href={`/notes/${note.id_notes}/edit`}>
+                <TooltipTrigger className="w-[40px] h-[40px] bg-blue-500 hover:bg-blue-600 rounded-full flex items-center justify-center">
+                  {/* <DialogEdit note={note}/> */}
+                  <SquarePen className="text-white" size={20} />
+                </TooltipTrigger>
+              </Link>
+              <TooltipContent>
+                <p>View & Edit Notes</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
 
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <DialogDelete note={note} />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Delete Notes</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <DialogDelete note={note} />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Delete Notes</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

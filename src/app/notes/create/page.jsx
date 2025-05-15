@@ -9,11 +9,16 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import jwt from "jsonwebtoken";
 
 export default function CreateNotePage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const token = localStorage.getItem("token");
+
+  const payload = jwt.decode(token);
 
   const router = useRouter();
   const { toast } = useToast();
@@ -33,9 +38,10 @@ export default function CreateNotePage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          id_user: "anonim",
+          id_user: payload.userId,
           title,
           content,
         }),

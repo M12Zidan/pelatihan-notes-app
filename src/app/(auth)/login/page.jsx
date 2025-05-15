@@ -40,7 +40,7 @@ export default function LoginPage() {
       
       localStorage.setItem("token", dataResponse.token);
       
-      router.push("/notes");
+      window.location.href = "/notes";
     }catch(e){
       setError(e.message);
     } finally{

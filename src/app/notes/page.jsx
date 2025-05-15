@@ -2,10 +2,19 @@
 import CardNotes from "@/components/my-component/CardNotes";
 import { Loader } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import jwt from "jsonwebtoken";
 
 const AllNotesPage = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const token = localStorage.getItem("token");
+
+  const payload = jwt.decode(token)
+
+  console.log(payload)
+
+  const userId = payload.userId
 
   const fetchNotes = async () => {
     try {
@@ -23,6 +32,7 @@ const AllNotesPage = () => {
     fetchNotes();
   }, []);
 
+
   return (
     <div className="container max-w-screen-lg mx-auto p-4">
       <h1 className="mt-6 text-4xl font-bold text-center text-blue-500 mb-10">
@@ -37,7 +47,7 @@ const AllNotesPage = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           {notes.map((note) => {
-            return <CardNotes key={note.id_notes} note={note} />;
+            return <CardNotes key={note.id_notes} note={note} isOwner={userId === note.id_user} />;
           })}
         </div>
       )}
